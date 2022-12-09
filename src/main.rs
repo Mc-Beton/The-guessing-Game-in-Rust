@@ -19,13 +19,18 @@ fn main() {
             .read_line(&mut guess)
             .expect("Failed to read line");
 
-        let guess: u32 = match guess.trim().parse() {
+        let guess: i32 = match guess.trim().parse() {
             Ok(num) => num,
             Err(_) => {
-                println!("That is not a number, please try again.");
+                println!("That is not a valid number, please try again.");
                 continue;
             }
         };
+
+        if guess < 1 || guess > 100 {
+            println!("The secret number will be between 1 and 100.");
+            continue;
+        }
     
         println!("You guessed: {guess}");
         counter += 1;
